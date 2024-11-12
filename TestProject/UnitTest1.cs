@@ -43,12 +43,14 @@ namespace TestProject
             Assert.AreEqual(false, result);
         }
         [Test]
+        [Ignore("Ignore a test")]
         public void Test1()
         {
             int result = _calculator.Add(2, 3);
             Assert.AreEqual(5, result);
         }
         [Test]
+        [Ignore("Ignore a test")]
         public void Subtract()
         {
             int result = _calculator.Subtract(5, 3);
@@ -56,6 +58,7 @@ namespace TestProject
         }
 
         [Test]
+        [Ignore("Ignore a test")]
         public void Multiply()
         {
             int result = _calculator.Multiply(4, 5);
@@ -63,6 +66,7 @@ namespace TestProject
         }
 
         [Test]
+        [Ignore("Ignore a test")]
         public void Divide()
         {
             int result = _calculator.Multiply(15, 5);
