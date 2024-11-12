@@ -9,7 +9,12 @@ namespace TestProject
         {
             _calculator = new Calculator();
         }
-
+        [Test]
+        public void OpenSmartInterface()
+        {
+            bool result = _calculator.StartTool();
+            Assert.AreEqual(false, result);
+        }
         [Test]
         public void Test1()
         {
