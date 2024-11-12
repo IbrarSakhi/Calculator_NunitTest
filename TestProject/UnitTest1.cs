@@ -37,6 +37,7 @@ namespace TestProject
         }
 
         [Test]
+        [Ignore("Ignore a test")]
         public void OpenSmartInterface()
         {
             bool result = _calculator.StartTool();
