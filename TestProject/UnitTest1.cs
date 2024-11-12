@@ -16,7 +16,7 @@ namespace TestProject
         public void LaunchEXETest()
         {
             // Specify the path to the executable
-            string exePath = @"C:\Windows\SysWOW64\calc.exe";
+            string exePath = @"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Smart Wires\SmartInterface\SmartInterface.lnk";
 
             // Set up the process start info
             var startInfo = new ProcessStartInfo
