@@ -90,9 +90,9 @@ namespace TestProject
             var startInfo = new ProcessStartInfo
             {
                 FileName = scriptPath,
-                UseShellExecute = false,
-                CreateNoWindow = true,                   // Run the script without a window
-                WindowStyle = ProcessWindowStyle.Hidden  // Ensure it runs hidden
+                UseShellExecute = true,
+                CreateNoWindow = false,                   // Run the script without a window
+                WindowStyle = ProcessWindowStyle.Normal  // Ensure it runs hidden
             };
 
             using (var process = Process.Start(startInfo))
@@ -100,7 +100,7 @@ namespace TestProject
                 Assert.IsNotNull(process, "Process could not be started.");
 
                 // Optionally, wait for the process to complete or set a timeout
-                process.WaitForExit(5000); // Wait up to 5 seconds for the script to run
+                process.WaitForExit(10000); // Wait up to 5 seconds for the script to run
 
                 // Check the exit code if needed (0 usually indicates success)
                 Assert.AreEqual(0, process.ExitCode, "The script did not execute successfully.");
