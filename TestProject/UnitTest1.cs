@@ -74,5 +74,36 @@ namespace TestProject
             Assert.AreEqual(5, result);
             //Assert.Throws<DivideByZeroException>(() => _calculator.Divide(10, 0));
         }
+
+
+        [Test]
+        public void RunScriptAndOpenExeTest()
+        {
+            // Path to the batch script
+            string scriptPath = @"LaunchApp.bat";
+
+            // Ensure the script exists before trying to start it
+            Assert.IsTrue(File.Exists(scriptPath), "Batch script not found at specified path.");
+
+            // Set up the process start info for the batch file
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = scriptPath,
+                UseShellExecute = false,
+                CreateNoWindow = true,                   // Run the script without a window
+                WindowStyle = ProcessWindowStyle.Hidden  // Ensure it runs hidden
+            };
+
+            using (var process = Process.Start(startInfo))
+            {
+                Assert.IsNotNull(process, "Process could not be started.");
+
+                // Optionally, wait for the process to complete or set a timeout
+                process.WaitForExit(5000); // Wait up to 5 seconds for the script to run
+
+                // Check the exit code if needed (0 usually indicates success)
+                Assert.AreEqual(0, process.ExitCode, "The script did not execute successfully.");
+            }
+        }
     }
 }
