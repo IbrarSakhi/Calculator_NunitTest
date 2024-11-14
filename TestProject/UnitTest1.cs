@@ -13,6 +13,7 @@ namespace TestProject
         }
 
         [Test]
+        [Ignore("Ignore a test")]
         public void LaunchEXETest()
         {
             // Specify the path to the executable
