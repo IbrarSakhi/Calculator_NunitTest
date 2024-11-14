@@ -78,6 +78,7 @@ namespace TestProject
 
 
         [Test]
+        [Ignore("Ignore a test")]
         public void RunScriptAndOpenExeTest()
         {
             // Path to the batch script
@@ -104,6 +105,43 @@ namespace TestProject
 
                 // Check the exit code if needed (0 usually indicates success)
                // Assert.AreEqual(0, process.ExitCode, "The script did not execute successfully.");
+            }
+        }
+
+
+        [Test]
+        public void RunBatScriptWithPsExec()
+        {
+            // Path to the bat script you want to run
+            string batFilePath = @"psexec-script.bat";
+
+            // Set up the process start information
+            var processInfo = new ProcessStartInfo
+            {
+                FileName = $"{batFilePath}",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = false
+            };
+
+            // Start the process
+            using (var process = new Process { StartInfo = processInfo })
+            {
+                process.Start();
+
+                // Capture output and errors if needed
+                string output = process.StandardOutput.ReadToEnd();
+                string error = process.StandardError.ReadToEnd();
+
+                process.WaitForExit();
+
+                // Assert that the process executed successfully
+                Assert.AreEqual(0, process.ExitCode, $"PsExec failed: {error}");
+
+                // Optionally, you can also verify the output or errors
+                TestContext.WriteLine($"Output: {output}");
+                TestContext.WriteLine($"Error: {error}");
             }
         }
     }

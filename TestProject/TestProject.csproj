@@ -11,10 +11,18 @@
 
   <ItemGroup>
     <None Remove="LaunchApp.bat" />
+    <None Remove="psexec-script.bat" />
+    <None Remove="PsExec.exe" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="LaunchApp.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="psexec-script.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PsExec.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
