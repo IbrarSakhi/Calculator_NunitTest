@@ -16,7 +16,7 @@ namespace TestProject
         public void LaunchEXETest()
         {
             // Specify the path to the executable
-            string exePath = @"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\SWIFT EOL.lnk";
+            string exePath = @"C:\Program Files (x86)\Smart Wires\SmartInterface\SmartInterface.exe";
 
             // Set up the process start info
             var startInfo = new ProcessStartInfo
