@@ -100,7 +100,7 @@ namespace TestProject
                 Assert.IsNotNull(process, "Process could not be started.");
 
                 // Optionally, wait for the process to complete or set a timeout
-                process.WaitForExit(10000); // Wait up to 5 seconds for the script to run
+                //process.WaitForExit(10000); // Wait up to 5 seconds for the script to run
 
                 // Check the exit code if needed (0 usually indicates success)
                 Assert.AreEqual(0, process.ExitCode, "The script did not execute successfully.");
