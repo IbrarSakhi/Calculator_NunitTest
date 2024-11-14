@@ -11,6 +11,6 @@ if %errorlevel% neq 0 (
 
 REM If the script is running as Admin, execute your command here
 echo Running command as administrator...
-start "" "C:\Program Files (x86)\Smart Wires\SmartInterface\SmartInterface.exe"
+start "" "J:\SW-E2E\01-ATM Repository\Code Workspace\Working\EMSApplication.exe"
 
 endlocal
