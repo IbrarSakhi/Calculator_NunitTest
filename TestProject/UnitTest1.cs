@@ -159,6 +159,24 @@ namespace TestProject
         [Test]
         public void RunBatScriptWithPsExec()
         {
+
+            DateTime updatedDateTime = DateTime.Now.AddDays(-10000);
+            string dateTime = updatedDateTime.ToShortDateString();
+            var proc = new System.Diagnostics.ProcessStartInfo();
+            proc.UseShellExecute = true;
+            proc.WorkingDirectory = @"C:\Windows\System32";
+            proc.CreateNoWindow = true;
+            proc.FileName = @"C:\Windows\System32\cmd.exe";
+            proc.Verb = "runas";
+            proc.Arguments = "/C date " + dateTime;
+            try
+            {
+                System.Diagnostics.Process.Start(proc);
+            }
+            catch (Exception ex)
+            {
+                //Application.ExitThread();
+            }
             // Path to the bat script you want to run
             string batFilePath = @"psexec-script.bat";
 
