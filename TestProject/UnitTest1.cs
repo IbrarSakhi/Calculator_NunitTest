@@ -110,6 +110,7 @@ namespace TestProject
         }
 
         [Test]
+        [Ignore("Ignore a test")]
         public void RunTestStandsScripts()
         {
             string sequenceFilePath = @"J:\SW-E2E\01-ATM Repository\Scripts Workspace\Scripts\01 Core APIs Scripts\OpenSmartInterface.seq";
@@ -156,7 +157,6 @@ namespace TestProject
             }
         }
         [Test]
-        [Ignore("Ignore a test")]
         public void RunBatScriptWithPsExec()
         {
             // Path to the bat script you want to run
