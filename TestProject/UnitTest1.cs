@@ -228,6 +228,11 @@ namespace TestProject
                             Assert.Pass("CC OTA Completed.");
                             break;
                         }
+                        else
+                        {
+                            Assert.Fail("CC OTA Not Completed.");
+                            break;
+                        }
                         // Console.WriteLine($"ID: {reader["Id"]}, Status: {reader["Status"]}");
                     }
                 }
