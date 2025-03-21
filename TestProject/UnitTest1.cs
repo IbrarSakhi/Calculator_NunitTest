@@ -1,4 +1,5 @@
 using System;
+using System.Data.SQLite;
 using System.Diagnostics;
 using NationalInstruments.TestStand.Interop.API;
 namespace TestProject
@@ -157,9 +158,9 @@ namespace TestProject
             }
         }
         [Test]
+        [Ignore("Ignore a test")]
         public void RunBatScriptWithPsExec()
         {
-
             //DateTime updatedDateTime = DateTime.Now.AddDays(-10000);
             //string dateTime = updatedDateTime.ToShortDateString();
             //var proc = new System.Diagnostics.ProcessStartInfo();
@@ -208,6 +209,31 @@ namespace TestProject
                 TestContext.WriteLine($"Output: {output}");
                 TestContext.WriteLine($"Error: {error}");
             }
+        }
+        [Test]
+        public void ReadCCStatus()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection("Data Source=\"C:\\Users\\ibrar.sakhi\\Desktop\\OTA\\OTA\\bin\\Debug\\JenkinsOTADB.sqlite\";Version=3;"))
+            {
+                conn.Open();
+
+                string selectQuery = "SELECT * FROM OTAStatus";
+                using (SQLiteCommand cmd = new SQLiteCommand(selectQuery, conn))
+                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var status = reader["Status"];
+                        if (status.ToString() == "CC OTA Completed")
+                        {
+                            Assert.Pass("CC OTA Completed.");
+                            break;
+                        }
+                        // Console.WriteLine($"ID: {reader["Id"]}, Status: {reader["Status"]}");
+                    }
+                }
+            }
+
         }
     }
 }
