@@ -8,6 +8,10 @@ namespace TestProject
     public class Tests
     {
         private Calculator _calculator;
+
+        static string DatabaseFile = @"C:\Users\ibrar.sakhi\Documents\JenkinsOTADB.sqlite";
+        static string ConnectionString = $"Data Source={DatabaseFile};Version=3;";
+
         [SetUp]
         public void Setup()
         {
@@ -157,7 +161,7 @@ namespace TestProject
                 }
             }
         }
-        [Test]
+        [Test, Order(1)]
         public void RunBatScriptWithPsExec()
         {
             //DateTime updatedDateTime = DateTime.Now.AddDays(-10000);
@@ -210,7 +214,7 @@ namespace TestProject
             }
             System.Threading.Thread.Sleep(5000);
         }
-        [Test]
+        [Test, Order(2)]
         public void ReadCCStatus()
         {
             bool found = false;
@@ -218,7 +222,7 @@ namespace TestProject
             DateTime startTime = DateTime.Now;
             while ((DateTime.Now - startTime).TotalSeconds < 60 * 15)
             {
-                using (SQLiteConnection conn = new SQLiteConnection("Data Source=\"C:\\Users\\ibrar.sakhi\\Desktop\\OTA\\OTA\\bin\\Debug\\JenkinsOTADB.sqlite\";Version=3;"))
+                using (SQLiteConnection conn = new SQLiteConnection(ConnectionString))
                 {
                     conn.Open();
 
@@ -251,7 +255,7 @@ namespace TestProject
 
 
         }
-        [Test]
+        [Test, Order(3)]
         public void ReadSVMCStatus()
         {
             bool found = false;
@@ -292,7 +296,7 @@ namespace TestProject
 
 
         }
-        [Test]
+        [Test, Order(4)]
         public void ReadPLCCStatus()
         {
             bool found = false;
