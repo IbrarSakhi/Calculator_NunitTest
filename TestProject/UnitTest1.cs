@@ -263,7 +263,7 @@ namespace TestProject
             DateTime startTime = DateTime.Now;
             while ((DateTime.Now - startTime).TotalSeconds < 60 * 15)
             {
-                using (SQLiteConnection conn = new SQLiteConnection("Data Source=\"C:\\Users\\ibrar.sakhi\\Desktop\\OTA\\OTA\\bin\\Debug\\JenkinsOTADB.sqlite\";Version=3;"))
+                using (SQLiteConnection conn = new SQLiteConnection(ConnectionString))
                 {
                     conn.Open();
 
@@ -304,7 +304,7 @@ namespace TestProject
             DateTime startTime = DateTime.Now;
             while ((DateTime.Now - startTime).TotalSeconds < 60 * 15)
             {
-                using (SQLiteConnection conn = new SQLiteConnection("Data Source=\"C:\\Users\\ibrar.sakhi\\Desktop\\OTA\\OTA\\bin\\Debug\\JenkinsOTADB.sqlite\";Version=3;"))
+                using (SQLiteConnection conn = new SQLiteConnection(ConnectionString))
                 {
                     conn.Open();
 
