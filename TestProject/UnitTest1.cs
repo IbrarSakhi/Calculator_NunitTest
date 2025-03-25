@@ -212,31 +212,124 @@ namespace TestProject
         [Test]
         public void ReadCCStatus()
         {
-            using (SQLiteConnection conn = new SQLiteConnection("Data Source=\"C:\\Users\\ibrar.sakhi\\Desktop\\OTA\\OTA\\bin\\Debug\\JenkinsOTADB.sqlite\";Version=3;"))
-            {
-                conn.Open();
+            bool found = false;
 
-                string selectQuery = "SELECT * FROM OTAStatus";
-                using (SQLiteCommand cmd = new SQLiteCommand(selectQuery, conn))
-                using (SQLiteDataReader reader = cmd.ExecuteReader())
+            DateTime startTime = DateTime.Now;
+            while ((DateTime.Now - startTime).TotalSeconds < 60 * 15)
+            {
+                using (SQLiteConnection conn = new SQLiteConnection("Data Source=\"C:\\Users\\ibrar.sakhi\\Desktop\\OTA\\OTA\\bin\\Debug\\JenkinsOTADB.sqlite\";Version=3;"))
                 {
-                    while (reader.Read())
+                    conn.Open();
+
+                    string selectQuery = "SELECT * FROM OTAStatus";
+                    using (SQLiteCommand cmd = new SQLiteCommand(selectQuery, conn))
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
                     {
-                        var status = reader["Status"];
-                        if (status.ToString() == "CC OTA Completed")
+                        while (reader.Read())
                         {
-                            Assert.Pass("CC OTA Completed.");
-                            break;
+                            var Error = reader["Error"];
+                            if (Error.ToString() == "true")
+                            {
+                                Assert.Fail("CC OTA Failed.");
+                                found = true;
+                                break;
+                            }
+                            var status = reader["Status"];
+                            if (status.ToString() == "CC OTA Completed")
+                            {
+                                Assert.Pass("CC OTA Completed.");
+                                found = true;
+                                break;
+                            }
+
                         }
-                        else
-                        {
-                            Assert.Fail("CC OTA Not Completed.");
-                            break;
-                        }
-                        // Console.WriteLine($"ID: {reader["Id"]}, Status: {reader["Status"]}");
                     }
                 }
+                if (found) { break; }
             }
+
+
+        }
+        [Test]
+        public void ReadSVMCStatus()
+        {
+            bool found = false;
+
+            DateTime startTime = DateTime.Now;
+            while ((DateTime.Now - startTime).TotalSeconds < 60 * 15)
+            {
+                using (SQLiteConnection conn = new SQLiteConnection("Data Source=\"C:\\Users\\ibrar.sakhi\\Desktop\\OTA\\OTA\\bin\\Debug\\JenkinsOTADB.sqlite\";Version=3;"))
+                {
+                    conn.Open();
+
+                    string selectQuery = "SELECT * FROM OTAStatus";
+                    using (SQLiteCommand cmd = new SQLiteCommand(selectQuery, conn))
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var Error = reader["Error"];
+                            if (Error.ToString() == "true")
+                            {
+                                Assert.Fail("SVMC OTA Failed.");
+                                found = true;
+                                break;
+                            }
+                            var status = reader["Status"];
+                            if (status.ToString() == "SVMC OTA Completed")
+                            {
+                                Assert.Pass("SVMC OTA Completed.");
+                                found = true;
+                                break;
+                            }
+
+                        }
+                    }
+                }
+                if (found) { break; }
+            }
+
+
+        }
+        [Test]
+        public void ReadPLCCStatus()
+        {
+            bool found = false;
+
+            DateTime startTime = DateTime.Now;
+            while ((DateTime.Now - startTime).TotalSeconds < 60 * 15)
+            {
+                using (SQLiteConnection conn = new SQLiteConnection("Data Source=\"C:\\Users\\ibrar.sakhi\\Desktop\\OTA\\OTA\\bin\\Debug\\JenkinsOTADB.sqlite\";Version=3;"))
+                {
+                    conn.Open();
+
+                    string selectQuery = "SELECT * FROM OTAStatus";
+                    using (SQLiteCommand cmd = new SQLiteCommand(selectQuery, conn))
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var Error = reader["Error"];
+                            if (Error.ToString() == "true")
+                            {
+                                Assert.Fail("PLC OTA Failed.");
+                                found = true;
+                                break;
+                            }
+                            var status = reader["Status"];
+                            if (status.ToString() == "PLC OTA Completed")
+                            {
+                                Assert.Pass("PLC OTA Completed.");
+                                found = true;
+                                break;
+                            }
+
+                        }
+                    }
+                }
+                if (found) { break; }
+            }
+
 
         }
     }
