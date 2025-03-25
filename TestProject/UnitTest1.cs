@@ -208,6 +208,7 @@ namespace TestProject
                 TestContext.WriteLine($"Output: {output}");
                 TestContext.WriteLine($"Error: {error}");
             }
+            System.Threading.Thread.Sleep(5000);
         }
         [Test]
         public void ReadCCStatus()
