@@ -162,7 +162,6 @@ namespace TestProject
             }
         }
         [Test, Order(1)]
-        [Ignore("Ignore a test")]
         public void RunBatScriptWithPsExec()
         {
             //DateTime updatedDateTime = DateTime.Now.AddDays(-10000);
