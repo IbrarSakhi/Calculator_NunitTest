@@ -9,7 +9,7 @@ namespace TestProject
     {
         private Calculator _calculator;
 
-        static string DatabaseFile = @"C:\Users\ibrar.sakhi\Documents\JenkinsOTADB.sqlite";
+        static string DatabaseFile = @"C:\Users\smartwiresatm\Documents\JenkinsOTADB.sqlite";
         static string ConnectionString = $"Data Source={DatabaseFile};Version=3;";
 
         [SetUp]
@@ -215,6 +215,7 @@ namespace TestProject
             System.Threading.Thread.Sleep(5000);
         }
         [Test, Order(2)]
+       
         public void ReadCCStatus()
         {
             bool found = false;
@@ -256,6 +257,7 @@ namespace TestProject
 
         }
         [Test, Order(3)]
+      
         public void ReadSVMCStatus()
         {
             bool found = false;
@@ -297,6 +299,7 @@ namespace TestProject
 
         }
         [Test, Order(4)]
+       
         public void ReadPLCCStatus()
         {
             bool found = false;
