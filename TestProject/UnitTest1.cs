@@ -9,7 +9,7 @@ namespace TestProject
     {
         private Calculator _calculator;
 
-        static string DatabaseFile = @"C:\Users\ibrar.sakhi\Documents\JenkinsOTADB.sqlite";
+        static string DatabaseFile = @"C:\Users\smartwiresatm\Documents\JenkinsOTADB.sqlite";
         static string ConnectionString = $"Data Source={DatabaseFile};Version=3;";
 
         [SetUp]
