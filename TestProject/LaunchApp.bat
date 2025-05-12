@@ -1,2 +1,2 @@
 @echo off
-start "" "C:\Windows\SysWOW64\calc.exe"
+start "" "C:\Users\smartwiresatm\Desktop\OTA\OTA\bin\Debug\OTA.exe"
