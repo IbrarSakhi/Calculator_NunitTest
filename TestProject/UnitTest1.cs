@@ -113,12 +113,6 @@ namespace TestProject
                 // Assert.AreEqual(0, process.ExitCode, "The script did not execute successfully.");
             }
         }
-        [Test]
-        public void RunOTA()
-        {
-            Process.Start(@"D:\OTA\OTA\bin\Debug\OTA.exe");
-        }
-
 
         [Test]
         [Ignore("Ignore a test")]
@@ -170,7 +164,6 @@ namespace TestProject
 
 
 
-        [Ignore("Ignore a test")]
         [Test, Order(1)]
         public void RunBatScriptWithPsExec()
         {
@@ -201,7 +194,6 @@ namespace TestProject
             }
             System.Threading.Thread.Sleep(5000);
         }
-        [Ignore("Ignore a test")]
         [Test, Order(2)]
 
         public void ReadCCStatus()
@@ -244,7 +236,6 @@ namespace TestProject
 
 
         }
-        [Ignore("Ignore a test")]
         [Test, Order(3)]
 
         public void ReadSVMCStatus()
@@ -287,7 +278,6 @@ namespace TestProject
 
 
         }
-        [Ignore("Ignore a test")]
         [Test, Order(4)]
 
         public void ReadPLCCStatus()
