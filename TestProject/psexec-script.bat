@@ -2,7 +2,8 @@
 setlocal
 
 REM Use PsExec to launch application as an admin
-psexec -i -d "D:\OTA\OTA\bin\Debug\OTA.exe"
+PsExec -i 1 -h -d -u Power\smartwiresatm -p sw@atm "D:\OTA\OTA\bin\Debug\OTA.exe"
 
+pause
 
 endlocal
