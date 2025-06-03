@@ -185,22 +185,26 @@ namespace TestProject
 
                 process.WaitForExit();
 
-                
+
                 Assert.Pass();
 
-                
                 TestContext.WriteLine($"Output: {output}");
                 TestContext.WriteLine($"Error: {error}");
             }
-            System.Threading.Thread.Sleep(1000*30);
         }
         [Test, Order(2)]
 
         public void ReadCCStatus()
         {
+            DateTime startTime = DateTime.Now;
+            while ((DateTime.Now - startTime).TotalSeconds < 60 * 2)
+            {
+                if (File.Exists(DatabaseFile))
+                    break;
+            }
             bool found = false;
 
-            DateTime startTime = DateTime.Now;
+            startTime = DateTime.Now;
             while ((DateTime.Now - startTime).TotalSeconds < 60 * 15)
             {
                 using (SQLiteConnection conn = new(ConnectionString))
@@ -208,27 +212,25 @@ namespace TestProject
                     conn.Open();
 
                     string selectQuery = "SELECT * FROM OTAStatus";
-                    using (SQLiteCommand cmd = new(selectQuery, conn))
-                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    using SQLiteCommand cmd = new(selectQuery, conn);
+                    using SQLiteDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        var Error = reader["Error"];
+                        if (Error.ToString() == "true")
                         {
-                            var Error = reader["Error"];
-                            if (Error.ToString() == "true")
-                            {
-                                Assert.Fail("CC OTA Failed.");
-                                found = true;
-                                break;
-                            }
-                            var status = reader["Status"];
-                            if (status.ToString() == "CC OTA Completed")
-                            {
-                                Assert.Pass("CC OTA Completed.");
-                                found = true;
-                                break;
-                            }
-
+                            Assert.Fail("CC OTA Failed.");
+                            found = true;
+                            break;
                         }
+                        var status = reader["Status"];
+                        if (status.ToString() == "CC OTA Completed")
+                        {
+                            Assert.Pass("CC OTA Completed.");
+                            found = true;
+                            break;
+                        }
+
                     }
                 }
                 if (found) { break; }
@@ -250,27 +252,25 @@ namespace TestProject
                     conn.Open();
 
                     string selectQuery = "SELECT * FROM OTAStatus";
-                    using (SQLiteCommand cmd = new(selectQuery, conn))
-                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    using SQLiteCommand cmd = new(selectQuery, conn);
+                    using SQLiteDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        var Error = reader["Error"];
+                        if (Error.ToString() == "true")
                         {
-                            var Error = reader["Error"];
-                            if (Error.ToString() == "true")
-                            {
-                                Assert.Fail("SVMC OTA Failed.");
-                                found = true;
-                                break;
-                            }
-                            var status = reader["Status"];
-                            if (status.ToString() == "SVMC OTA Completed")
-                            {
-                                Assert.Pass("SVMC OTA Completed.");
-                                found = true;
-                                break;
-                            }
-
+                            Assert.Fail("SVMC OTA Failed.");
+                            found = true;
+                            break;
                         }
+                        var status = reader["Status"];
+                        if (status.ToString() == "SVMC OTA Completed")
+                        {
+                            Assert.Pass("SVMC OTA Completed.");
+                            found = true;
+                            break;
+                        }
+
                     }
                 }
                 if (found) { break; }
@@ -292,27 +292,25 @@ namespace TestProject
                     conn.Open();
 
                     string selectQuery = "SELECT * FROM OTAStatus";
-                    using (SQLiteCommand cmd = new SQLiteCommand(selectQuery, conn))
-                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    using SQLiteCommand cmd = new SQLiteCommand(selectQuery, conn);
+                    using SQLiteDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        var Error = reader["Error"];
+                        if (Error.ToString() == "true")
                         {
-                            var Error = reader["Error"];
-                            if (Error.ToString() == "true")
-                            {
-                                Assert.Fail("PLC OTA Failed.");
-                                found = true;
-                                break;
-                            }
-                            var status = reader["Status"];
-                            if (status.ToString() == "PLC OTA Completed")
-                            {
-                                Assert.Pass("PLC OTA Completed.");
-                                found = true;
-                                break;
-                            }
-
+                            Assert.Fail("PLC OTA Failed.");
+                            found = true;
+                            break;
                         }
+                        var status = reader["Status"];
+                        if (status.ToString() == "PLC OTA Completed")
+                        {
+                            Assert.Pass("PLC OTA Completed.");
+                            found = true;
+                            break;
+                        }
+
                     }
                 }
                 if (found) { break; }
