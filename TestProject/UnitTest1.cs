@@ -165,7 +165,6 @@ namespace TestProject
 
 
         [Test, Order(1)]
-        [Ignore("Ignore a test")]
         public void RunBatScriptWithPsExec()
         {
             string batFilePath = @"psexec-script.bat";
