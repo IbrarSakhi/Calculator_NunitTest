@@ -193,7 +193,7 @@ namespace TestProject
                 TestContext.WriteLine($"Output: {output}");
                 TestContext.WriteLine($"Error: {error}");
             }
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(1000*30);
         }
         [Test, Order(2)]
 
@@ -204,12 +204,12 @@ namespace TestProject
             DateTime startTime = DateTime.Now;
             while ((DateTime.Now - startTime).TotalSeconds < 60 * 15)
             {
-                using (SQLiteConnection conn = new SQLiteConnection(ConnectionString))
+                using (SQLiteConnection conn = new(ConnectionString))
                 {
                     conn.Open();
 
                     string selectQuery = "SELECT * FROM OTAStatus";
-                    using (SQLiteCommand cmd = new SQLiteCommand(selectQuery, conn))
+                    using (SQLiteCommand cmd = new(selectQuery, conn))
                     using (SQLiteDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -246,12 +246,12 @@ namespace TestProject
             DateTime startTime = DateTime.Now;
             while ((DateTime.Now - startTime).TotalSeconds < 60 * 15)
             {
-                using (SQLiteConnection conn = new SQLiteConnection(ConnectionString))
+                using (SQLiteConnection conn = new(ConnectionString))
                 {
                     conn.Open();
 
                     string selectQuery = "SELECT * FROM OTAStatus";
-                    using (SQLiteCommand cmd = new SQLiteCommand(selectQuery, conn))
+                    using (SQLiteCommand cmd = new(selectQuery, conn))
                     using (SQLiteDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -288,7 +288,7 @@ namespace TestProject
             DateTime startTime = DateTime.Now;
             while ((DateTime.Now - startTime).TotalSeconds < 60 * 15)
             {
-                using (SQLiteConnection conn = new SQLiteConnection(ConnectionString))
+                using (SQLiteConnection conn = new(ConnectionString))
                 {
                     conn.Open();
 
