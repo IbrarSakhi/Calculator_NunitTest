@@ -196,15 +196,10 @@ namespace TestProject
 
         public void ReadCCStatus()
         {
-            DateTime startTime = DateTime.Now;
-            while ((DateTime.Now - startTime).TotalSeconds < 60 * 2)
-            {
-                if (File.Exists(DatabaseFile))
-                    break;
-            }
+            System.Threading.Thread.Sleep(1000 * 5);
             bool found = false;
 
-            startTime = DateTime.Now;
+            DateTime startTime = DateTime.Now;
             while ((DateTime.Now - startTime).TotalSeconds < 60 * 15)
             {
                 using (SQLiteConnection conn = new(ConnectionString))
