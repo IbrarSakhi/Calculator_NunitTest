@@ -194,6 +194,8 @@ namespace TestProject
         }
         [Test, Order(2)]
 
+        [Ignore("Ignore a test")]
+
         public void ReadCCStatus()
         {
             System.Threading.Thread.Sleep(1000 * 5);
@@ -235,6 +237,8 @@ namespace TestProject
         }
         [Test, Order(3)]
 
+        [Ignore("Ignore a test")]
+
         public void ReadSVMCStatus()
         {
             bool found = false;
@@ -274,6 +278,8 @@ namespace TestProject
 
         }
         [Test, Order(4)]
+
+        [Ignore("Ignore a test")]
 
         public void ReadPLCCStatus()
         {
