@@ -1,7 +1,6 @@
 using System;
 using System.Data.SQLite;
 using System.Diagnostics;
-using NationalInstruments.TestStand.Interop.API;
 namespace TestProject
 {
 
@@ -114,53 +113,53 @@ namespace TestProject
             }
         }
 
-        [Test]
-        [Ignore("Ignore a test")]
-        public void RunTestStandsScripts()
-        {
-            string sequenceFilePath = @"J:\SW-E2E\01-ATM Repository\Scripts Workspace\Scripts\01 Core APIs Scripts\OpenSmartInterface.seq";
-            string sequenceName = "MainSequence"; // The sequence to execute
-            SequenceFile seqFile = null;
-            // Create an instance of the TestStand engine
-            Engine testStandEngine = new Engine();
-            try
-            {
-                // Load the sequence file
-                seqFile = testStandEngine.GetSequenceFile(sequenceFilePath);
+        //[Test]
+        //[Ignore("Ignore a test")]
+        //public void RunTestStandsScripts()
+        //{
+        //    string sequenceFilePath = @"J:\SW-E2E\01-ATM Repository\Scripts Workspace\Scripts\01 Core APIs Scripts\OpenSmartInterface.seq";
+        //    string sequenceName = "MainSequence"; // The sequence to execute
+        //    SequenceFile seqFile = null;
+        //    // Create an instance of the TestStand engine
+        //    Engine testStandEngine = new Engine();
+        //    try
+        //    {
+        //        // Load the sequence file
+        //        seqFile = testStandEngine.GetSequenceFile(sequenceFilePath);
 
-                // Get the sequence to execute
-                Sequence sequence = seqFile.GetSequenceByName(sequenceName);
+        //        // Get the sequence to execute
+        //        Sequence sequence = seqFile.GetSequenceByName(sequenceName);
 
-                // Create a new execution
-                Execution execution = testStandEngine.NewExecution(
-                    seqFile,
-                    sequenceName,
-                    null,      // Pass an execution client (null if not needed)
-                    false,       // ProcessModelClient (null if not needed)
-                     0
-                );
-                // Wait for execution to complete
+        //        // Create a new execution
+        //        Execution execution = testStandEngine.NewExecution(
+        //            seqFile,
+        //            sequenceName,
+        //            null,      // Pass an execution client (null if not needed)
+        //            false,       // ProcessModelClient (null if not needed)
+        //             0
+        //        );
+        //        // Wait for execution to complete
 
-                execution.WaitForEndEx(-1);
+        //        execution.WaitForEndEx(-1);
 
 
-                // Handle execution results
-                var result = execution.ResultStatus;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error executing sequence: {ex.Message}");
-            }
-            finally
-            {
-                // Release the engine and clean up
-                if (testStandEngine != null)
-                {
-                    testStandEngine.ReleaseSequenceFileEx(seqFile, 0);
-                    testStandEngine.ShutDown(true);
-                }
-            }
-        }
+        //        // Handle execution results
+        //        var result = execution.ResultStatus;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Error executing sequence: {ex.Message}");
+        //    }
+        //    finally
+        //    {
+        //        // Release the engine and clean up
+        //        if (testStandEngine != null)
+        //        {
+        //            testStandEngine.ReleaseSequenceFileEx(seqFile, 0);
+        //            testStandEngine.ShutDown(true);
+        //        }
+        //    }
+        //}
 
 
 

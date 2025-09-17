@@ -39,12 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="NationalInstruments.TestStand.Interop.API">
-      <HintPath>C:\Program Files\National Instruments\TestStand 2016\API\DotNET\Assemblies\CurrentVersion\NationalInstruments.TestStand.Interop.API.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 
