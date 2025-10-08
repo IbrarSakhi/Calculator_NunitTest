@@ -193,7 +193,7 @@ namespace TestProject
         }
         [Test, Order(2)]
 
-        [Ignore("Ignore a test")]
+        //[Ignore("Ignore a test")]
 
         public void ReadCCStatus()
         {
@@ -236,7 +236,7 @@ namespace TestProject
         }
         [Test, Order(3)]
 
-        [Ignore("Ignore a test")]
+        //[Ignore("Ignore a test")]
 
         public void ReadSVMCStatus()
         {
@@ -278,7 +278,7 @@ namespace TestProject
         }
         [Test, Order(4)]
 
-        [Ignore("Ignore a test")]
+        //[Ignore("Ignore a test")]
 
         public void ReadPLCCStatus()
         {
